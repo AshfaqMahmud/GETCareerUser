@@ -1,57 +1,54 @@
 package com.ashfaq.systemproject;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
-    BottomNavigationView bottomNavigationView;
-
-    HomeFragment homeFragment = new HomeFragment();
-    EmployerFragment employerFragment = new EmployerFragment();
-    DashboardFragment dashboardFragment = new DashboardFragment();
-    ProfileFragment profileFragment = new ProfileFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar!=null)
+            actionBar.hide();
         setContentView(R.layout.activity_main);
 
-        bottomNavigationView  = findViewById(R.id.bottomNavigationView);
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.container,homeFragment).commit();
-
-        BadgeDrawable badgeDrawable = bottomNavigationView.getOrCreateBadge(R.id.dashboard);
-        badgeDrawable.setVisible(true);
-        badgeDrawable.setNumber(8);
-
-        bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+        TextView tv = (TextView)findViewById(R.id.t3);
+        tv.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onNavigationItemSelected(MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.home:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container,homeFragment).commit();
-                        return true;
-                    case R.id.employer:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container,employerFragment).commit();
-                        return true;
-                    case R.id.dashboard:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container,dashboardFragment).commit();
-                        return true;
-                    case R.id.profile:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container,profileFragment).commit();
-                        return true;
-                }
-
-                return false;
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Login.class);
+                startActivity(intent);
             }
         });
 
+
+    }
+
+    public void goLogin(View view) {
     }
 }
