@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "208792045527",
+    "firebase_url": "https://systemproject-70c26-default-rtdb.firebaseio.com",
+    "project_id": "systemproject-70c26",
+    "storage_bucket": "systemproject-70c26.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:208792045527:android:a1436d6ffd312f4f1cad92",
+        "android_client_info": {
+          "package_name": "com.ashfaq.systemproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "208792045527-bgr4gc3oaj2q8adqdkh17f4qp8gtj7og.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8HwBagbSAKaYLf578vIsJxwtDdX72kzE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "208792045527-bgr4gc3oaj2q8adqdkh17f4qp8gtj7og.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

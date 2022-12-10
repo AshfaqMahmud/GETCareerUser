@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="departments">
+        <item>Unemployed</item>
+        <item>Employed</item>
+        <item>Employed but looking for job</item>
+
+    </string-array>
+</resources>
