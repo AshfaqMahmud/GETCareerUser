@@ -6,15 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".MainPage">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="40sp"
+        android:textColor="@color/black"
+        android:text="GET Career"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="56dp"
-        android:background="@color/white">
+        android:background="@color/white"
+        tools:ignore="SpeakableTextPresentCheck">
+
+
         <FrameLayout
             android:id="@+id/container"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         </FrameLayout>
     </ScrollView>
@@ -24,7 +33,7 @@
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="#1C1C1C"
+        android:background="#0288D1"
         android:layout_gravity="bottom"
         app:menu="@menu/bottom_nav_menu" />
 

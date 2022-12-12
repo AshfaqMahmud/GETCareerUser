@@ -4,10 +4,10 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="20dp"
-    android:layout_marginTop="5dp"
-    android:layout_marginStart="10dp"
-    android:layout_marginEnd="10dp"
-    app:cardBackgroundColor="#F6A793"
+    android:layout_marginBottom="5dp"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="8dp">
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
             android:fontFamily="@font/lexend_deca"
             android:text="Company Name Placeholder"
             android:textColor="@color/black"
-            android:textSize="26sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
         <TextView
@@ -31,7 +31,7 @@
             android:fontFamily="@font/lexend_deca"
             android:text="CompanyType"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="italic" />
         <TextView
             android:id="@+id/companyloc"
@@ -40,7 +40,7 @@
             android:fontFamily="@font/lexend_deca"
             android:text="CompanyLoc"
             android:textColor="#373737"
-            android:textSize="15sp"
+            android:textSize="13sp"
             android:textStyle="normal" />
         <TextView
             android:id="@+id/key"
@@ -49,8 +49,9 @@
             android:fontFamily="@font/lexend_deca"
             android:text="Key"
             android:textColor="#373737"
-            android:textSize="12sp"
-            android:textStyle="normal" />
+            android:textSize="5sp"
+            android:textStyle="normal"
+            android:visibility="invisible"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

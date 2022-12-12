@@ -1,6 +1,7 @@
 package com.ashfaq.systemproject;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -30,6 +31,7 @@ public class EmployerFragment extends Fragment implements RecyclerViewInterface 
     RecyclerView recyclerView;
     ArrayList<Company> list;
     DatabaseReference databaseReference;
+    ProgressDialog dialog;
 
 
     @Override
@@ -38,6 +40,9 @@ public class EmployerFragment extends Fragment implements RecyclerViewInterface 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_employer, container, false);
         recyclerView=view.findViewById(R.id.recycler);
+        dialog = new ProgressDialog(getActivity());
+        dialog.setTitle("Loading Employers\nThis may take some time");
+        dialog.show();
         databaseReference= FirebaseDatabase.getInstance().getReference("CompanyDB");
         list = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -56,6 +61,7 @@ public class EmployerFragment extends Fragment implements RecyclerViewInterface 
                     String cat = dataSnapshot.child("category").getValue(String.class);
                     Company company = new Company(name,loc,cat,uid);
                     list.add(company);
+                    dialog.dismiss();
                 }
                 myAdapter.notifyDataSetChanged();
             }

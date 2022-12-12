@@ -61,7 +61,7 @@ public class ProfileFragment extends Fragment {
         edit = view.findViewById(R.id.editprofile);
 
         //set value to TV using firebase
-        reference.child("userinfo").addValueEventListener(new ValueEventListener() {
+       reference.child("userinfo").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -78,7 +78,7 @@ public class ProfileFragment extends Fragment {
                 String exp1 = snapshot.child(uid).child("Experience").child("Exp1").getValue(String.class);
                 String exp2 = snapshot.child(uid).child("Experience").child("Exp2").getValue(String.class);
                 String image = snapshot.child(uid).child("imageurl").getValue(String.class);
-                Picasso.with(userimage.getContext()).load(image).into(userimage);
+                Picasso.with(getActivity()).load(image).into(userimage);
 
 
                 tname.setText(name);

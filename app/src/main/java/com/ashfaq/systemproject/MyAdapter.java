@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
-    private static RecyclerViewInterface recyclerViewInterface;
+    static RecyclerViewInterface recyclerViewInterface;
     Context context;
     ArrayList<Company> list;
 
