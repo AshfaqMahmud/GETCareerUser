@@ -64,15 +64,20 @@ public class Registration extends AppCompatActivity {
         tcpass=findViewById(R.id.tcpass);
         tphone=findViewById(R.id.tuname);
         //arraylist for spinner 1
+
         List<String> status = new ArrayList<>();
         status.add(0,"Choose current status");
+        //TextView spinText = (TextView) spinner.getChildAt(0);
+        //spinText.setTextColor(Color.RED);
         status.add("Employed");
         status.add("Unemployed");
+
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, status);
         spinner.setAdapter(arrayAdapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((TextView) parent.getChildAt(0)).setTextColor(Color.parseColor("#80000000"));
                 if (parent.getItemAtPosition(position).equals("Choose current status")){
                 }else {
                     String item = parent.getItemAtPosition(position).toString();
@@ -99,6 +104,7 @@ public class Registration extends AppCompatActivity {
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ((TextView) parent.getChildAt(0)).setTextColor(Color.parseColor("#80000000"));
                 if (parent.getItemAtPosition(position).equals("Choose Category")){
                 }else {
                     String item = parent.getItemAtPosition(position).toString();
@@ -116,7 +122,7 @@ public class Registration extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Registration.this, "Register Button CLicked",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Registration.this, "Register Button CLicked",Toast.LENGTH_SHORT).show();
                 String name = tname.getText().toString();
                 String phone = tphone.getText().toString();
                 String cat = spinner1.getSelectedItem().toString();
@@ -129,7 +135,7 @@ public class Registration extends AppCompatActivity {
                     mAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(Registration.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            Toast.makeText(Registration.this, "inside Mauth",Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(Registration.this, "inside Mauth",Toast.LENGTH_SHORT).show();
                             if (task.isSuccessful()){
 
                                 FirebaseUser user = mAuth.getCurrentUser();

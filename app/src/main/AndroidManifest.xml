@@ -15,14 +15,6 @@
         android:theme="@style/Theme.SystemProject"
         tools:targetApi="31">
         <activity
-            android:name=".CompanyRegDemo"
-            android:exported="false">
-
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".EditProfile"
             android:exported="false">
             <meta-data

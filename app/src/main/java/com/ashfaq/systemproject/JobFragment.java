@@ -30,94 +30,85 @@ public class JobFragment extends Fragment implements RecyclerViewInterface {
     JobAdapter myAdapter;
     RecyclerView recyclerView;
     ArrayList<Job> list;
-    DatabaseReference databaseReference,dbref;
+    DatabaseReference databaseReference, dbref;
     ProgressDialog dialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-       View view = inflater.inflate(R.layout.fragment_job, container, false);
+        View view = inflater.inflate(R.layout.fragment_job, container, false);
 
-        recyclerView=view.findViewById(R.id.recycler2);
+        recyclerView = view.findViewById(R.id.recycler2);
         dialog = new ProgressDialog(getActivity());
         dialog.setTitle("Loading available jobs\nThis may take some time");
         dialog.show();
 
-        //Toast.makeText(getActivity(),cat+" 1st",Toast.LENGTH_SHORT).show();
-        SharedPreferences sharedPreferences = getActivity().getApplicationContext().getSharedPreferences("userinfo",0); // java
-        String cat =sharedPreferences.getString("category","");
-        Toast.makeText(getActivity(),cat+" fragment",Toast.LENGTH_SHORT).show();
-        if(cat.equals("IT")){
-            databaseReference= FirebaseDatabase.getInstance().getReference("JobVacancy").child("Category").child("IT");
+        SharedPreferences sharedPreferences = getActivity().getApplicationContext().getSharedPreferences("userinfo", 0);
+        String cat = sharedPreferences.getString("category", "");
+        //Toast.makeText(getActivity(), cat + " fragment", Toast.LENGTH_SHORT).show();
+        if (cat.equals("IT")) {
+            databaseReference = FirebaseDatabase.getInstance().getReference("JobVacancy").child("Category").child("IT");
 
             list = new ArrayList<>();
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-            myAdapter=new JobAdapter(getActivity(),list,  this);
+            myAdapter = new JobAdapter(getActivity(), list, this);
             recyclerView.setAdapter(myAdapter);
-
-            //Toast.makeText(getActivity(),uid+" uid",Toast.LENGTH_SHORT).show();
-
 
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @SuppressLint("NotifyDataSetChanged")
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for (DataSnapshot dataSnapshot:snapshot.getChildren())
-                    {
-                        String uid2 =dataSnapshot.getKey();
-                        //Toast.makeText(getActivity(),uid2+" 2nd",Toast.LENGTH_SHORT).show();
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        String uid2 = dataSnapshot.getKey();
                         String name = dataSnapshot.child("Post").getValue(String.class);
                         String typ = dataSnapshot.child("Location").getValue(String.class);
                         String company = dataSnapshot.child("Company").getValue(String.class);
-                        Job job = new Job(name,typ,company,uid2);
+                        Job job = new Job(name, typ, company, uid2);
                         list.add(job);
                         dialog.dismiss();
                     }
                     myAdapter.notifyDataSetChanged();
                 }
+
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(getActivity()," "+error.toString(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), " " + error.toString(), Toast.LENGTH_SHORT).show();
                 }
             });
-        }
-        else if (cat.equals("Business")){
-            databaseReference= FirebaseDatabase.getInstance().getReference("JobVacancy").child("Category").child("Business");
+        } else if (cat.equals("Business")) {
+            databaseReference = FirebaseDatabase.getInstance().getReference("JobVacancy").child("Category").child("Business");
 
             list = new ArrayList<>();
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-            myAdapter=new JobAdapter(getActivity(),list,  this);
+            myAdapter = new JobAdapter(getActivity(), list, this);
             recyclerView.setAdapter(myAdapter);
-
-            //Toast.makeText(getActivity(),uid+" uid",Toast.LENGTH_SHORT).show();
-
 
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @SuppressLint("NotifyDataSetChanged")
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    for (DataSnapshot dataSnapshot:snapshot.getChildren())
-                    {
-                        String uid2 =dataSnapshot.getKey();
-                        Toast.makeText(getActivity(),uid2+" 2nd",Toast.LENGTH_SHORT).show();
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        String uid2 = dataSnapshot.getKey();
+                        Toast.makeText(getActivity(), uid2 + " 2nd", Toast.LENGTH_SHORT).show();
                         String name = dataSnapshot.child("Post").getValue(String.class);
                         String typ = dataSnapshot.child("Location").getValue(String.class);
                         String company = dataSnapshot.child("Company").getValue(String.class);
-                        Job job = new Job(name,typ,company,uid2);
+                        Job job = new Job(name, typ, company, uid2);
                         list.add(job);
                         dialog.dismiss();
                     }
                     myAdapter.notifyDataSetChanged();
                 }
+
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
-                    Toast.makeText(getActivity()," "+error.toString(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), " " + error.toString(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
 
 
-       return view;
+        return view;
     }
 
 

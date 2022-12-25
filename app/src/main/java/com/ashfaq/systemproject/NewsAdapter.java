@@ -35,9 +35,9 @@ public class NewsAdapter extends RecyclerView.Adapter<CustomNewsViewHolder> {
     public void onBindViewHolder(@NonNull CustomNewsViewHolder holder, int position) {
         holder.text_title.setText(headlines.get(position).getTitle());
         holder.text_source.setText(headlines.get(position).getSource().getName());
-        if(headlines.get(position).getUrlToImage()!=null){
-            Picasso.with(context).load(headlines.get(position).getUrlToImage()).into(holder.img_headline);
-        }
+        //if(headlines.get(position).getUrlToImage()!=null){
+            //Picasso.with(context).load(headlines.get(position).getUrlToImage()).into(holder.img_headline);
+        //}
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override

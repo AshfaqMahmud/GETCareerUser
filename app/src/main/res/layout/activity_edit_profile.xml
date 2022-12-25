@@ -24,8 +24,8 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/userimage"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 app:shapeAppearanceOverlay="@style/circleImageView"
@@ -33,12 +33,12 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="20dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:gravity="center"
+                android:layout_gravity="center"
                 android:orientation="vertical">
-
+                <!--
                 <Button
                     android:id="@+id/choosebtn"
                     android:layout_width="match_parent"
@@ -59,7 +59,39 @@
                     android:padding="10dp"
                     android:text="Upload image"
                     android:textAllCaps="false"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white" /> -->
+
+                <TextView
+                    android:id="@+id/username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend_deca"
+                    android:textColor="@color/black"
+                    android:textColorHint="#3C545454"
+                    android:hint="Name Placeholder"
+                    android:textSize="27sp"
+                    android:textStyle="bold"
+                    tools:ignore="SpeakableTextPresentCheck" />
+                <TextView
+                    android:id="@+id/usermail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend_deca"
+                    android:hint="mackcy.hannah@gmail.com"
+                    android:textColor="@color/black"
+                    android:textColorHint="#3C545454"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/userconct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:fontFamily="@font/lexend_deca"
+                    android:hint="+8801010101010"
+                    android:textColor="@color/black"
+                    android:textColorHint="#3C545454"
+                    android:textSize="14sp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -92,23 +124,71 @@
                     android:id="@+id/status"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:fontFamily="@font/lexend_deca"
                     android:text="Employed at : "
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
+                <!--<SearchView
+                    android:id="@+id/search"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/search_custom"
+                    android:fontFamily="@font/lexend_deca"
+                    android:hint="Search company"
+                    android:searchIcon="@drawable/ic_baseline_search_24"
+                    android:textColor="@color/black"
+                    android:textColorHint="#F1F1F1"
+                    android:textSize="15sp" />-->
                 <EditText
                     android:id="@+id/company"
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:fontFamily="@font/lexend_deca"
                     android:hint="Company name"
+                    android:minWidth="240dp"
+                    android:textColor="@color/black"
+                    android:textColorHint="#7C7C7C"
+                    android:textSize="15sp" />
+
+                <ImageView
+                    android:id="@+id/search"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_baseline_search_24" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/emphide"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lexend_deca"
+                    android:text="Employee ID : "
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <EditText
+                    android:id="@+id/eid"
+                    android:layout_width="120dp"
+                    android:layout_height="50dp"
+                    android:fontFamily="@font/lexend_deca"
+                    android:hint="eID"
                     android:textColor="@color/black"
                     android:textColorHint="#7C7C7C"
                     android:textSize="15sp" />
 
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -124,7 +204,7 @@
 
                 <EditText
                     android:id="@+id/date"
-                    android:layout_width="wrap_content"
+                    android:layout_width="120dp"
                     android:layout_height="50dp"
                     android:fontFamily="@font/lexend_deca"
                     android:hint="Enter Date"
@@ -158,11 +238,13 @@
 
             <EditText
                 android:id="@+id/about"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="50dp"
                 android:fontFamily="@font/lexend_deca"
                 android:hint="Write something about yourself"
                 android:justificationMode="inter_word"
+                android:inputType="textMultiLine"
                 android:textColor="@color/black"
                 android:textColorHint="#7C7C7C"
                 android:textSize="15sp" />
@@ -364,8 +446,7 @@
             android:text="Save Profile"
             android:textColor="#FFFCFC"
             android:textSize="16sp"
-            android:textStyle="bold"
-            tools:ignore="TouchTargetSizeCheck" />
+            android:textStyle="bold" />
 
 
     </RelativeLayout>

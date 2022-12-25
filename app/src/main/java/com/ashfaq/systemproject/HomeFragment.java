@@ -1,7 +1,7 @@
 package com.ashfaq.systemproject;
 
 import android.app.ProgressDialog;
-import android.graphics.Color;
+
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -96,12 +96,11 @@ public class HomeFragment extends Fragment implements SelectListeners,View.OnCli
     public void onClick(View v) {
         TextView tv = (TextView) v;
         TextView cv = t5;
-        //int color = Integer.parseInt("custom", 16)+0xFF000000;
 
         if(tv.getText().toString().equals("General")){
             dialog.setTitle("Loading news related General...");
             dialog.show();
-            //tv.setBackgroundColor(Color.parseColor("#d4d446"));
+
             cv.setText("Showing General related news");
             RequestApiManager manager = new RequestApiManager(getActivity());
             manager.getNewsHeadlines(listener,"general",null);
@@ -109,7 +108,7 @@ public class HomeFragment extends Fragment implements SelectListeners,View.OnCli
         else if (tv.getText().toString().equals("Health")){
             dialog.setTitle("Loading news related Health...");
             dialog.show();
-            //tv.setBackgroundColor(Color.parseColor("#d4d446"));
+
             cv.setText("Showing Health related news");
             RequestApiManager manager = new RequestApiManager(getActivity());
             manager.getNewsHeadlines(listener,"health",null);
@@ -117,7 +116,7 @@ public class HomeFragment extends Fragment implements SelectListeners,View.OnCli
         else if (tv.getText().toString().equals("Tech")){
             dialog.setTitle("Loading news related Technology...");
             dialog.show();
-            //tv.setBackgroundColor(Color.parseColor("#d4d446"));
+
             cv.setText("Showing Technology related news");
             RequestApiManager manager = new RequestApiManager(getActivity());
             manager.getNewsHeadlines(listener,"technology",null);
@@ -125,7 +124,7 @@ public class HomeFragment extends Fragment implements SelectListeners,View.OnCli
         else if (tv.getText().toString().equals("Business")){
             dialog.setTitle("Loading news related Business...");
             dialog.show();
-            //tv.setBackgroundColor(Color.parseColor("#d4d446"));
+
             cv.setText("Showing Business related news");
             RequestApiManager manager = new RequestApiManager(getActivity());
             manager.getNewsHeadlines(listener,"business",null);

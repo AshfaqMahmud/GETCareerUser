@@ -50,7 +50,7 @@ public class EmployerFragment extends Fragment implements RecyclerViewInterface 
         recyclerView.setAdapter(myAdapter);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
-            @SuppressLint("NotifyDataSetChanged")
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot:snapshot.getChildren())

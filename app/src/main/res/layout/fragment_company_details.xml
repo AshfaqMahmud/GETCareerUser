@@ -16,7 +16,7 @@
             android:id="@+id/userbanner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:background="#8BE8DBFA"
             android:orientation="horizontal"
             android:padding="5dp">
@@ -25,8 +25,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="15dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="15dp">
 
                 <TextView
                     android:id="@+id/username"
@@ -58,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_below="@+id/userbanner"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="10dp"
             android:background="#8BE8DBFA"
             android:orientation="vertical"
             android:padding="15dp">
@@ -91,7 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/userstatus"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="10dp"
             android:background="#8BE8DBFA"
             android:orientation="vertical"
             android:padding="15dp">
@@ -122,7 +122,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/userabout"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="10dp"
             android:background="#8BE8DBFA"
             android:orientation="vertical"
             android:padding="15dp">
@@ -153,7 +153,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/userexp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="10dp"
             android:background="#8BE8DBFA"
             android:orientation="vertical"
             android:padding="15dp">
@@ -178,12 +178,13 @@
                 android:textSize="15sp" />
 
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/companyvalue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/useredu"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="10dp"
             android:background="#8BE8DBFA"
             android:orientation="vertical"
             android:padding="15dp">
@@ -204,6 +205,109 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:background="@color/black" />
+        </LinearLayout>
+        <Button
+            android:id="@+id/show2"
+            android:layout_below="@+id/companyvalue"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:backgroundTint="#FF9100"
+            android:fontFamily="@font/lexend_deca"
+            android:padding="15dp"
+            android:layout_centerHorizontal="true"
+            android:text="Show Reviews"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+        <LinearLayout
+            android:id="@+id/ratelayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/companyvalue"
+            android:layout_marginTop="10dp"
+            android:background="#8BE8DBFA"
+            android:orientation="vertical"
+            android:padding="15dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lexend_deca"
+                android:text="Review this company"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/star"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/lexend_deca"
+                android:gravity="center"
+                android:text="STAR"
+                android:textColor="#595959"
+                android:textSize="13sp" />
+
+            <RatingBar
+                android:id="@+id/ratebar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:progressBackgroundTint="#85D9FF"
+                android:progressTint="#FF1744"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <EditText
+                android:id="@+id/feedET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:fontFamily="@font/lexend_deca"
+                android:gravity="top"
+                android:hint="Write some feedback (Optional)"
+                android:inputType="textMultiLine"
+                android:minHeight="70dp"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:textColorHint="#7E000000"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="5dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/show"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:backgroundTint="#FF9100"
+                    android:fontFamily="@font/lexend_deca"
+                    android:padding="15dp"
+                    android:text="Show Reviews"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/reviewb"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="10dp"
+                    android:backgroundTint="#00B0FF"
+                    android:fontFamily="@font/lexend_deca"
+                    android:padding="15dp"
+                    android:text="Submit"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
         </LinearLayout>
     </RelativeLayout>

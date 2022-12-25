@@ -41,13 +41,21 @@ public class MainPage extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String uid = user.getUid();
-                Toast.makeText(MainPage.this,uid+" uid",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainPage.this,uid+" uid",Toast.LENGTH_SHORT).show();
                 String cat =snapshot.child(uid).child("Category").getValue(String.class);
-                Toast.makeText(MainPage.this, cat +" 1st",Toast.LENGTH_SHORT).show();
+                String company = snapshot.child(uid).child("Company").getValue(String.class);
+                //Toast.makeText(MainPage.this, cat +" 1st",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainPage.this, company+" com",Toast.LENGTH_SHORT).show();
                 SharedPreferences sharedPreferences = getSharedPreferences("userinfo",0);
                 SharedPreferences.Editor myEdit = sharedPreferences.edit();
                 myEdit.putString("category",cat);
+                myEdit.putString("usercompany",company);
                 myEdit.apply();
+//                Bundle bundle = new Bundle();
+//                bundle.putString("usercompany", company);
+//                set Fragmentclass Arguments
+//                CompanyDetails fragobj = new CompanyDetails();
+//                fragobj.setArguments(bundle);
             }
 
             @Override
@@ -56,7 +64,7 @@ public class MainPage extends AppCompatActivity {
             }
         });
 
-        HomeFragment fragment=new HomeFragment();
+        ProfileFragment fragment=new ProfileFragment();
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.container,fragment,"");
         fragmentTransaction.commit();

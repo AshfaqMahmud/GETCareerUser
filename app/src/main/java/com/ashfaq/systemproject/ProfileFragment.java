@@ -1,5 +1,6 @@
 package com.ashfaq.systemproject;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,6 +29,7 @@ import com.squareup.picasso.Picasso;
 
 
 public class ProfileFragment extends Fragment {
+    ProgressDialog dialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,6 +46,9 @@ public class ProfileFragment extends Fragment {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
         Button edit;
+        dialog = new ProgressDialog(getActivity());
+        dialog.setTitle("Loading Profile Information\nThis may take some time");
+        dialog.show();
 
         //get id of textviews
         tname = view.findViewById(R.id.username);
@@ -53,8 +58,8 @@ public class ProfileFragment extends Fragment {
         tabout= view.findViewById(R.id.about);
         texp1= view.findViewById(R.id.exp1);
         texp2= view.findViewById(R.id.exp2);
-        tscl= view.findViewById(R.id.education1);
-        tclg= view.findViewById(R.id.education2);
+        tscl= view.findViewById(R.id.school);
+        tclg= view.findViewById(R.id.college);
         //tsyear= view.findViewById(R.id.s);
         //tcyear= view.findViewById(R.id.about);
 
@@ -69,8 +74,10 @@ public class ProfileFragment extends Fragment {
                 String name = snapshot.child(uid).child("Name").getValue(String.class);
                 String mail = snapshot.child(uid).child("Email").getValue(String.class);
                 String phone = snapshot.child(uid).child("Phone").getValue(String.class);
+                String company = snapshot.child(uid).child("Company").getValue(String.class);
                 String status = snapshot.child(uid).child("Status").getValue(String.class);
                 String about = snapshot.child(uid).child("About").getValue(String.class);
+                String date = snapshot.child(uid).child("CompanyStartFrom").getValue(String.class);
                 String school = snapshot.child(uid).child("Education").child("School").getValue(String.class);
                 String syear = snapshot.child(uid).child("Education").child("SchoolYear").getValue(String.class);
                 String college = snapshot.child(uid).child("Education").child("College").getValue(String.class);
@@ -78,19 +85,24 @@ public class ProfileFragment extends Fragment {
                 String exp1 = snapshot.child(uid).child("Experience").child("Exp1").getValue(String.class);
                 String exp2 = snapshot.child(uid).child("Experience").child("Exp2").getValue(String.class);
                 String image = snapshot.child(uid).child("imageurl").getValue(String.class);
-                Picasso.with(getActivity()).load(image).into(userimage);
+                //Picasso.with(getActivity()).load(image).into(userimage);
 
-
+                String temp = status+" at "+company+" from "+date;
                 tname.setText(name);
                 tmail.setText(mail);
                 tphone.setText(phone);
-                tstatus.setText(status);
+                tstatus.setText(temp);
                 tabout.setText(about);
                 texp1.setText(exp1);
                 texp2.setText(exp2);
                 tscl.setText("School : "+school+" from "+syear);
                 tclg.setText("College : "+college+" from "+cyear);
 
+                //SharedPreferences preferences = getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
+                //SharedPreferences.Editor editor = preferences.edit();
+                //editor.putString("usercompany",company);
+                //editor.apply();
+                dialog.dismiss();
             }
 
             @Override

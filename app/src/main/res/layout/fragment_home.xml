@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E0F2FA"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".HomeFragment">
 
@@ -11,19 +11,19 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:text="Stay connected with the world !!!"
+       android:fontFamily="@font/lexend_deca"
+       android:background="#83B3E5FC"
        android:textSize="27sp"
        android:textStyle="bold"
        android:textColor="#0277BD"
-       android:padding="10dp"
-       android:fontFamily="@font/lexend_deca"
-       android:layout_marginTop="10dp"
-       />
+       android:padding="15dp"
+       android:layout_marginBottom="10dp" />
 
    <HorizontalScrollView
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:background="#4DD0E1"
-       android:padding="10dp">
+       android:padding="5dp">
       <LinearLayout
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"

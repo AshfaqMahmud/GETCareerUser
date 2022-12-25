@@ -6,12 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainPage">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="40sp"
-        android:textColor="@color/black"
-        android:text="GET Career"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
