@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -75,8 +76,8 @@ public class JobFragment extends Fragment implements RecyclerViewInterface {
                     Toast.makeText(getActivity(), " " + error.toString(), Toast.LENGTH_SHORT).show();
                 }
             });
-        } else if (cat.equals("Business")) {
-            databaseReference = FirebaseDatabase.getInstance().getReference("JobVacancy").child("Category").child("Business");
+        } else if (cat.equals("Business & Management")) {
+            databaseReference = FirebaseDatabase.getInstance().getReference("JobVacancy").child("Category").child("Business & Management");
 
             list = new ArrayList<>();
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -105,6 +106,72 @@ public class JobFragment extends Fragment implements RecyclerViewInterface {
                     Toast.makeText(getActivity(), " " + error.toString(), Toast.LENGTH_SHORT).show();
                 }
             });
+        } else if (cat.equals("Engineering")) {
+            databaseReference = FirebaseDatabase.getInstance().getReference("JobVacancy").child("Category").child("Engineering");
+
+            list = new ArrayList<>();
+            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            myAdapter = new JobAdapter(getActivity(), list, this);
+            recyclerView.setAdapter(myAdapter);
+
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @SuppressLint("NotifyDataSetChanged")
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        String uid2 = dataSnapshot.getKey();
+                        Toast.makeText(getActivity(), uid2 + " 2nd", Toast.LENGTH_SHORT).show();
+                        String name = dataSnapshot.child("Post").getValue(String.class);
+                        String typ = dataSnapshot.child("Location").getValue(String.class);
+                        String company = dataSnapshot.child("Company").getValue(String.class);
+                        Job job = new Job(name, typ, company, uid2);
+                        list.add(job);
+                        dialog.dismiss();
+                    }
+                    myAdapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(getActivity(), " " + error.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else if (cat.equals("Biology & Medical Science")) {
+            databaseReference = FirebaseDatabase.getInstance().getReference("JobVacancy").child("Category").child("Biology & Medical Science");
+
+            list = new ArrayList<>();
+            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            myAdapter = new JobAdapter(getActivity(), list, this);
+            recyclerView.setAdapter(myAdapter);
+
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @SuppressLint("NotifyDataSetChanged")
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        String uid2 = dataSnapshot.getKey();
+                        Toast.makeText(getActivity(), uid2 + " 2nd", Toast.LENGTH_SHORT).show();
+                        String name = dataSnapshot.child("Post").getValue(String.class);
+                        String typ = dataSnapshot.child("Location").getValue(String.class);
+                        String company = dataSnapshot.child("Company").getValue(String.class);
+                        Job job = new Job(name, typ, company, uid2);
+                        list.add(job);
+                        dialog.dismiss();
+                    }
+                    myAdapter.notifyDataSetChanged();
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Toast.makeText(getActivity(), " " + error.toString(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+        else
+        {
+            dialog.dismiss();
+            Snackbar.make(getActivity().findViewById(android.R.id.content),
+                    "No job found for your category", Snackbar.LENGTH_LONG).show();
         }
 
 

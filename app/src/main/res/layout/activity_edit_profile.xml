@@ -130,17 +130,6 @@
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
-                <!--<SearchView
-                    android:id="@+id/search"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/search_custom"
-                    android:fontFamily="@font/lexend_deca"
-                    android:hint="Search company"
-                    android:searchIcon="@drawable/ic_baseline_search_24"
-                    android:textColor="@color/black"
-                    android:textColorHint="#F1F1F1"
-                    android:textSize="15sp" />-->
                 <EditText
                     android:id="@+id/company"
                     android:layout_width="wrap_content"
@@ -151,6 +140,7 @@
                     android:textColor="@color/black"
                     android:textColorHint="#7C7C7C"
                     android:textSize="15sp" />
+
 
                 <ImageView
                     android:id="@+id/search"

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import android.widget.TextView;
@@ -18,6 +19,7 @@ import androidx.annotation.NonNull;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -39,17 +41,19 @@ public class EditProfile extends AppCompatActivity {
     String date2 = "";
     String company = "", eid = "", ckey = "";
     Button editdon;
+    ImageView search;
     LinearLayout layout;
     FirebaseUser user;
-    StorageReference reference;
-    DatabaseReference dbref, dbc;
+    boolean ctag;
+    DatabaseReference dbref, dbc, reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
-        reference = FirebaseStorage.getInstance().getReference("userimages");
+
+        reference = FirebaseDatabase.getInstance().getReference("CompanyDB");
         dbref = FirebaseDatabase.getInstance().getReference("userinfo");
         dbc = FirebaseDatabase.getInstance().getReference();
         EditText edate, ecompany, eabout, eexp1, eexp2, eescl, eesyear, eeclg, eecyear, eeid;
@@ -68,7 +72,7 @@ public class EditProfile extends AppCompatActivity {
         tname = findViewById(R.id.username);
         tmail = findViewById(R.id.usermail);
         tphone = findViewById(R.id.userconct);
-
+        search = findViewById(R.id.search);
 
         //image = findViewById(R.id.userimage);
 
@@ -115,6 +119,37 @@ public class EditProfile extends AppCompatActivity {
             }
         });
 
+        search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String tcompany = ecompany.getText().toString();
+                //String eid = eeid.getText().toString();
+                reference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot snapshot1 : snapshot.getChildren()) {
+                            if (tcompany.equals(snapshot1.child("name").getValue(String.class))) {
+                                Toast.makeText(EditProfile.this, "Matched " + snapshot1.child("name").getValue(String.class), Toast.LENGTH_SHORT).show();
+                                layout.setVisibility(View.VISIBLE);
+                                ckey = snapshot1.getKey();
+                                company = snapshot1.child("name").getValue(String.class);
+
+                                break;
+                            } else {
+                                Toast.makeText(EditProfile.this, "Not Matched " + snapshot1.child("name").getValue(String.class), Toast.LENGTH_SHORT).show();
+                                layout.setVisibility(View.GONE);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+            }
+        });
         //edit button action
         editdon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,7 +165,8 @@ public class EditProfile extends AppCompatActivity {
                 eid = eeid.getText().toString();
 
                 Query query = dbc.child("CompanyDB").child(ckey).child("Employees");
-                //Toast.makeText(EditProfile.this,"Searching for company",Toast.LENGTH_SHORT).show();
+                Toast.makeText(EditProfile.this, ckey, Toast.LENGTH_SHORT).show();
+
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
                     int flag = 0;
 
@@ -139,7 +175,8 @@ public class EditProfile extends AppCompatActivity {
 
                         for (DataSnapshot snap : snapshot.getChildren()) {
                             Toast.makeText(EditProfile.this, snap.getKey(), Toast.LENGTH_SHORT).show();
-                            if (snap.child("eid").getValue(String.class).equals(eid)) {
+
+                            if (snap.child("id").getValue(String.class).equals(eid)) {
                                 Toast.makeText(EditProfile.this, "Found User", Toast.LENGTH_SHORT).show();
                                 String tempo = snap.getKey();
 
@@ -151,6 +188,7 @@ public class EditProfile extends AppCompatActivity {
                                 dbrefer.child(uid).child("eid").setValue(eid);
                                 dbrefer.child(uid).child("CompanyStartFrom").setValue(date2);
                                 dbrefer.child(uid).child("About").setValue(about);
+                                dbrefer.child(uid).child("Status").setValue("Employed");
                                 dbrefer.child(uid).child("Experience").child("Exp1").setValue(exp1);
                                 dbrefer.child(uid).child("Experience").child("Exp2").setValue(exp2);
                                 dbrefer.child(uid).child("Education").child("School").setValue(school);
@@ -159,6 +197,7 @@ public class EditProfile extends AppCompatActivity {
                                 dbrefer.child(uid).child("Education").child("CollegeYear").setValue(collegeyear);
                                 dbc.child("CompanyDB").child(ckey).child("Employees").child(tempo).child("email").setValue(umail);
                                 Toast.makeText(EditProfile.this, "Profile Saved", Toast.LENGTH_SHORT).show();
+                                finish();
                                 break;
                             } else {
                                 flag = 1;
