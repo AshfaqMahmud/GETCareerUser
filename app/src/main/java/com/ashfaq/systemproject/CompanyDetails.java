@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseUser;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.DataPointInterface;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,6 +38,38 @@ import com.google.firebase.database.ValueEventListener;
 public class CompanyDetails extends Fragment {
     float number= 0;
     int val18=10,val19=20,val20=24,val21=5,val22=1;
+    long n = 0;
+    int year, value;
+    GraphView graphView;
+    LineGraphSeries series;
+    FirebaseUser user;
+    FirebaseDatabase node = FirebaseDatabase.getInstance();
+    DatabaseReference reference = node.getReference("CompanyDB");
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        String uid = getArguments().getString("Companykey");
+        reference.child(uid).child("Economy").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                DataPointInterface[] dp = new DataPoint[(int) snapshot.getChildrenCount()];
+                int index = 0;
+                for(DataSnapshot snapshot1: snapshot.getChildren())
+                {
+                    PointValue pointValue = snapshot1.getValue(PointValue.class);
+                    dp[index]=new DataPoint(pointValue.getxYear(),pointValue.getyVal());
+                    index++;
+                }
+                series.resetData(dp);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,8 +92,12 @@ public class CompanyDetails extends Fragment {
         showrvw2 = view.findViewById(R.id.show2);
         feedback = view.findViewById(R.id.feedET);
         ratingBar = view.findViewById(R.id.ratebar);
+        series = new LineGraphSeries();
+        graphView = view.findViewById(R.id.graph);
+        graphView.addSeries(series);
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
+
 
         tstar= view.findViewById(R.id.star);
         tname = view.findViewById(R.id.username);
@@ -86,12 +123,6 @@ public class CompanyDetails extends Fragment {
                 String loc = snapshot.child(uid).child("Location").getValue(String.class);
                 String about = snapshot.child(uid).child("about").getValue(String.class);
 
-//                val18 = snapshot.child(uid).child("Economical value").child("2018").getValue(Integer.class);
-//                val19 = snapshot.child(uid).child("Economical value").child("2019").getValue(Integer.class);
-//                val20 = snapshot.child(uid).child("Economical value").child("2020").getValue(Integer.class);
-//                val21 = snapshot.child(uid).child("Economical value").child("2021").getValue(Integer.class);
-//                val22 = snapshot.child(uid).child("Economical value").child("2022").getValue(Integer.class);
-
                 tname.setText(name);
                 tmail.setText(mail);
                 ttype.setText(cat);
@@ -99,16 +130,6 @@ public class CompanyDetails extends Fragment {
                 tloc.setText(loc);
                 tsize.setText(size);
 
-                GraphView graph = (GraphView) view.findViewById(R.id.graph);
-                LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(new DataPoint[] {
-                        new DataPoint(2018, val18),
-                        new DataPoint(2019, val19),
-                        new DataPoint(2020, val20),
-                        new DataPoint(2021, val21),
-                        new DataPoint(2022, val22)
-                });
-                graph.addSeries(series);
-                //Toast.makeText(getActivity(),name+" and "+cname,Toast.LENGTH_SHORT).show();
                 if(cname.equals(name))
                 {
                     showrvw2.setVisibility(View.GONE);

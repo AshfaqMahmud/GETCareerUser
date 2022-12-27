@@ -64,7 +64,7 @@ public class MainPage extends AppCompatActivity {
             }
         });
 
-        ProfileFragment fragment=new ProfileFragment();
+        HomeFragment fragment=new HomeFragment();
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.container,fragment,"");
         fragmentTransaction.commit();

@@ -64,7 +64,8 @@ public class JobFragment extends Fragment implements RecyclerViewInterface {
                         String name = dataSnapshot.child("Post").getValue(String.class);
                         String typ = dataSnapshot.child("Location").getValue(String.class);
                         String company = dataSnapshot.child("Company").getValue(String.class);
-                        Job job = new Job(name, typ, company, uid2);
+                        String date = dataSnapshot.child("Last Date").getValue(String.class);
+                        Job job = new Job(name, typ, company, uid2, date);
                         list.add(job);
                         dialog.dismiss();
                     }
@@ -90,11 +91,12 @@ public class JobFragment extends Fragment implements RecyclerViewInterface {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         String uid2 = dataSnapshot.getKey();
-                        Toast.makeText(getActivity(), uid2 + " 2nd", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getActivity(), uid2 + " 2nd", Toast.LENGTH_SHORT).show();
                         String name = dataSnapshot.child("Post").getValue(String.class);
                         String typ = dataSnapshot.child("Location").getValue(String.class);
                         String company = dataSnapshot.child("Company").getValue(String.class);
-                        Job job = new Job(name, typ, company, uid2);
+                        String lastdate = dataSnapshot.child("Last Date").getValue(String.class);
+                        Job job = new Job(name, typ, company, uid2, lastdate);
                         list.add(job);
                         dialog.dismiss();
                     }
@@ -120,11 +122,12 @@ public class JobFragment extends Fragment implements RecyclerViewInterface {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         String uid2 = dataSnapshot.getKey();
-                        Toast.makeText(getActivity(), uid2 + " 2nd", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getActivity(), uid2 + " 2nd", Toast.LENGTH_SHORT).show();
                         String name = dataSnapshot.child("Post").getValue(String.class);
                         String typ = dataSnapshot.child("Location").getValue(String.class);
                         String company = dataSnapshot.child("Company").getValue(String.class);
-                        Job job = new Job(name, typ, company, uid2);
+                        String date = dataSnapshot.child("Last Date").getValue(String.class);
+                        Job job = new Job(name, typ, company, uid2, date);
                         list.add(job);
                         dialog.dismiss();
                     }
@@ -150,11 +153,12 @@ public class JobFragment extends Fragment implements RecyclerViewInterface {
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         String uid2 = dataSnapshot.getKey();
-                        Toast.makeText(getActivity(), uid2 + " 2nd", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getActivity(), uid2 + " 2nd", Toast.LENGTH_SHORT).show();
                         String name = dataSnapshot.child("Post").getValue(String.class);
                         String typ = dataSnapshot.child("Location").getValue(String.class);
                         String company = dataSnapshot.child("Company").getValue(String.class);
-                        Job job = new Job(name, typ, company, uid2);
+                        String date = dataSnapshot.child("Last Date").getValue(String.class);
+                        Job job = new Job(name, typ, company, uid2, date);
                         list.add(job);
                         dialog.dismiss();
                     }
